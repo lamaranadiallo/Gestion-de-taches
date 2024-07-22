@@ -1,0 +1,11 @@
+*.pyc
+__pycache__
+db.sqlite3
+.env
+.venv
+task_manager_env/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
