@@ -15,9 +15,9 @@ def register(request):
             user = form.save()
             login(request, user)
             return redirect('task_list')
-        else:
-            form = UserCreationForm()
-        return render(request,'registration/register.html',{'form' : form})
+    else:
+        form = UserCreationForm()
+    return render(request,'registration/register.html',{'form' : form})
 
 
 @login_required
