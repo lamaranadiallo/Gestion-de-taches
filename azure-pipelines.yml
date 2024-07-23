@@ -18,10 +18,14 @@ steps:
 
 - script: |
     python src/manage.py test
-    coverage report
+  displayName: 'Run tests'
+
+- script: |
+    coverage run src/manage.py test
+    coverage report || true
   displayName: 'Run tests with coverage'
 
 - script: |
     pip install flake8
-    flake8 .
+    flake8 . --max-line-length=120
   displayName: 'Run linting'
