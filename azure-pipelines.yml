@@ -13,8 +13,15 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
+    pip install coverage
   displayName: 'Install dependencies'
 
 - script: |
     python src/manage.py test
-  displayName: 'Run tests'
+    coverage report
+  displayName: 'Run tests with coverage'
+
+- script: |
+    pip install flake8
+    flake8 .
+  displayName: 'Run linting'
