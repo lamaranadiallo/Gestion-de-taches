@@ -38,8 +38,8 @@ def task_list(request):
 
 @login_required
 def task_detail(request, pk):
-    tasks = get_object_or_404(Task, pk=pk, user=request.user)
-    return render(request, 'tasks/task_detail.html', {'tasks' :tasks})
+    task = get_object_or_404(Task, pk=pk, user=request.user)
+    return render(request, 'tasks/task_detail.html', {'task': task})
 
 
 @login_required
@@ -51,9 +51,9 @@ def task_create(request):
             task.user = request.user
             task.save()
             return redirect('task_detail', pk=task.pk)
-        else:
-            form = TaskForm()
-        return render(request, 'tasks/task_form.html', {'form' :form})
+    else:
+        form = TaskForm()
+    return render(request, 'tasks/task_form.html', {'form' :form})
 
 
 @login_required
@@ -64,9 +64,9 @@ def task_update(request, pk):
         if form.is_valid():
             form.save()
             return redirect('task_detail', pk=task.pk)
-        else:
-            form = TaskForm(instance=task)
-        return render(request, 'tasks/task_form.html', {'form':form})
+    else:
+        form = TaskForm(instance=task)
+    return render(request, 'tasks/task_form.html', {'form': form})
 
 
 @login_required
